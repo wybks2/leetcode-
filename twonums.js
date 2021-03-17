@@ -1,21 +1,20 @@
 // 六大原则
 
-const container = new Map();
 var twoSum = function (nums, target) {
+  const container = {};  
   const indexArr = [];
   let len = nums.length;
   for(let i = 0; i < len; i++){
     const value = target-nums[i];
-    if(container.has(value)){
-      indexArr.push(container.get(value));
+    console.log(i, container[value]);
+    if(container[value]){
+      indexArr.push(container[value]);
       indexArr.push(i);
-      container.delete(value);
     } else {
-      container.set(nums[i], i);
+      container[nums[i]] = i;
     }
-    console.log(container)
   }
   return indexArr;
 };
 
-console.log(twoSum([3,3], 6));
+console.log(twoSum([2,7,11,15], 9));
