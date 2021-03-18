@@ -1,4 +1,4 @@
-// 反转链表 2    94题
+// 反转链表 2    94题 git config --global http.sslVerify false
 
 var reverseBetween = function(head, left, right) {
   const part_head = head.slice(left-1, right).reverse();
