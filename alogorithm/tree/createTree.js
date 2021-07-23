@@ -1,8 +1,7 @@
 function createTree() {}
 
-
-
 // ===> 简易的二叉搜索树  节点已存在情况无法改变
+// ===> 优化二叉搜索树 可以任意插入节点
 // 初始化节点
 function Node(data, left, right) {
   this.data = data;
@@ -21,7 +20,7 @@ function insert(data) {
     let current = this.root;
     let parent;
     while (current) {
-      console.log(current,data)
+      console.log(current, data);
       parent = current;
       //如果父节点大于新节点
       if (parent.data > data) {
@@ -35,11 +34,16 @@ function insert(data) {
         // }
 
         // 优化写法
+        if (parent.left && parent.left.data < data) {
+          const oldNode = parent.left;
+          parent.left = n;
+          parent.left.left = oldNode;
+          break;
+        }
         current = parent.left;
-        parent.left || (parent.left = n)
+        parent.left || (parent.left = n);
         // 如果父节点小于新节点
       } else {
-        console.log(parent.right, "right...", data);
         // if (parent.right) {
         //   console.log('继续')
         //   current = parent.right;
@@ -49,8 +53,18 @@ function insert(data) {
         //   current = null;
         //   //break;
         // }
+        // 右子节点存在 且大于当前节点
+        if (parent.right && parent.right.data > data) {
+          // 存储原来右子节点
+          const oldNode = parent.right;
+          // 新节点绑定
+          parent.right = n;
+          // 旧子节点绑定
+          parent.right.right = oldNode;
+          break;
+        }
         current = parent.right;
-        parent.right || (parent.right = n)
+        parent.right || (parent.right = n);
       }
     }
   }
