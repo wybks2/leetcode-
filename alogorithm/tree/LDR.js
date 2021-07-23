@@ -19,6 +19,7 @@ function isEnd(node, stack, nodeArr) {
     // node.left = null;
   }else {
     // 1.存储该节点 以及
+    console.log(node)
     nodeArr.push(node.val);
     if(node.right){
       // 存在右子节点，将右子节点压入stack
